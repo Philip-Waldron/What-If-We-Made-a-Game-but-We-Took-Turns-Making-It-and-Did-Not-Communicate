@@ -12,10 +12,15 @@ public class ThinkGun : MonoBehaviour
     private bool _shotInProgress;
     private float _shootTimer;
     private bool _canShoot = true;
+    private bool _rechargingShot;
 
     private void Update()
     {
-        UpdateRechargeTimer();
+        if (_rechargingShot)
+        {
+            UpdateRechargeTimer();
+        }
+
         HandleInput();
         if (!_shotInProgress)
         {
@@ -23,6 +28,18 @@ public class ThinkGun : MonoBehaviour
         }
 
         Debug.DrawRay(transform.position, transform.forward * 100);
+    }
+
+    // Manage the internal clock for the shoot rate (recharge).
+    private void UpdateRechargeTimer()
+    {
+        _shootTimer += Time.deltaTime;
+        if (_shootTimer > PlayerController.Instance.ThinkGunRechargeTime)
+        {
+            _canShoot = true;
+            _rechargingShot = false;
+            _shootTimer = 0;;
+        }
     }
 
     // Get your handles off my input. Get your own input.
@@ -63,12 +80,12 @@ public class ThinkGun : MonoBehaviour
     }
 
     // Play the audio related to shooting.
-    // This plays a random (3 second - set in inspector) section of audio from the clip.
-    private void PlayAudio()
+    // This plays a random section of audio from the clip.
+    private void PlayAudio(float sectionLength)
     {
-        AudioSource.time = Random.Range(0f, AudioSource.clip.length - ShootSoundPlayTime);
+        AudioSource.time = Random.Range(0f, AudioSource.clip.length - sectionLength);
         AudioSource.Play();
-        AudioSource.SetScheduledEndTime(AudioSettings.dspTime + ShootSoundPlayTime);
+        AudioSource.SetScheduledEndTime(AudioSettings.dspTime + sectionLength);
     }
 
     // Take the shot.
@@ -89,26 +106,7 @@ public class ThinkGun : MonoBehaviour
                 damageable.Damage(PlayerController.Instance.ThinkGunDamage);
 
                 // lil knockback.
-                PlayerController.Instance.GetComponent<Rigidbody>().AddForce(-forceDirection * (PlayerController.Instance.ThinkGunKnockbackStrength / 4), ForceMode.Impulse);
-            }
-        }
-    }
-
-    // Manage the internal clock for the shoot rate (recharge).
-    private void UpdateRechargeTimer()
-    {
-        if (_canShoot)
-        {
-            _shootTimer = 0;
-        }
-
-        if (!_canShoot)
-        {
-            _shootTimer += Time.deltaTime;
-            if (_shootTimer > PlayerController.Instance.ThinkGunRechargeTime)
-            {
-                _canShoot = true;
-                _shootTimer -= PlayerController.Instance.ThinkGunRechargeTime;
+                PlayerController.Instance.GetComponent<Rigidbody>().AddForce(-forceDirection * (PlayerController.Instance.ThinkGunPlayerKnockbackStrength), ForceMode.Impulse);
             }
         }
     }
@@ -118,6 +116,8 @@ public class ThinkGun : MonoBehaviour
     IEnumerator PrepareAndFireThinkGun()
     {
         _canShoot = false;
+
+        PlayAudio(PlayerController.Instance.ThinkGunArmTime + PlayerController.Instance.ThinkGunChargeTime + ShootSoundPlayTime + (PlayerController.Instance.ThinkGunArmTime / 2));
 
         float elapsedTime = 0;
         transform.localScale = new Vector3(0, 0, 0);
@@ -132,7 +132,6 @@ public class ThinkGun : MonoBehaviour
         transform.localScale = new Vector3(2, 2, 2);
 
         _shotInProgress = true;
-        PlayAudio();
         elapsedTime = 0;
         while (elapsedTime < PlayerController.Instance.ThinkGunChargeTime)
         {
@@ -162,6 +161,7 @@ public class ThinkGun : MonoBehaviour
 
         transform.localScale = new Vector3(0, 0, 0);
         _shotInProgress = false;
+        _rechargingShot = true;
 
         yield return null;
     }

@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     public float ThinkGunArmTime;
     public float ThinkGunChargeTime;
     public float ThinkGunKnockbackStrength;
+    public float ThinkGunPlayerKnockbackStrength;
     public float ThinkGunDamage;
 
     [Header("Helth")]

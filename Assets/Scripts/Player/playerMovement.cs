@@ -15,6 +15,9 @@ public class playerMovement : MonoBehaviour
             PlayerController.Instance.MoveDirection.Normalize();
         }
 
-        PlayerRigidbody.velocity = Time.fixedDeltaTime * PlayerController.Instance.MoveSpeed * PlayerController.Instance.MoveDirection;
+        //PlayerRigidbody.velocity = Time.fixedDeltaTime * PlayerController.Instance.MoveSpeed * PlayerController.Instance.MoveDirection;
+
+        // There's probably a way to have better and snappier movement, but the other method above says no to forces acting on the player.
+        PlayerRigidbody.AddForce(Time.fixedDeltaTime * PlayerController.Instance.MoveSpeed * PlayerController.Instance.MoveDirection, ForceMode.Acceleration);
     }
 }
