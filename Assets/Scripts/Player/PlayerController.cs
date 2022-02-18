@@ -30,11 +30,13 @@ public class PlayerController : MonoBehaviour
     [Header("Helth")]
     public float Helth;
     public float OnDamageInvulnerableTime;
+    private float MaxHelth;
 
     // I'm too lazy to implement a proper Singleton, plz only have 1 PlayerController or you will create a paradox and kill us all (REALLY BAD).
     // Use this to get a reference to the player from anywhere (it's static).
     private void Awake()
     {
+        MaxHelth = Helth;
         Instance = this;
     }
 
@@ -65,6 +67,11 @@ public class PlayerController : MonoBehaviour
         {
             Body.rotation = Quaternion.RotateTowards(Body.rotation, Quaternion.LookRotation(MoveDirection.normalized * -1), Time.deltaTime * 1000);
         }
+    }
+
+    public float GetMaxHelth()
+    {
+        return MaxHelth;
     }
 
     // Face the direction of movement.

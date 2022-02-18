@@ -6,6 +6,21 @@ public class DamageOnCollision : MonoBehaviour
 
     private bool _hasCollidedOnce;
 
+    private float initializationTime;
+
+    void Start()
+    {
+        initializationTime = Time.timeSinceLevelLoad;
+    }
+
+    void Update()
+    {
+        if(Time.timeSinceLevelLoad - initializationTime > 1)
+        {
+            _hasCollidedOnce = true;
+        }
+    }
+
     // Damage the first thing collided with if it is damageable.
     private void OnCollisionEnter(Collision other)
     {
@@ -14,11 +29,12 @@ public class DamageOnCollision : MonoBehaviour
             return;
         }
 
-        if (!other.gameObject.CompareTag("Player"))
+        if (!other.gameObject.CompareTag("Enemy"))
         {
-            other.gameObject.GetComponent<IDamageable>()?.Damage(Damage);
+            return;
         }
 
+        other.gameObject.GetComponent<IDamageable>()?.Damage(Damage);
         _hasCollidedOnce = true;
     }
 }
