@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Movement Values")]
     public float MoveSpeed = 5;
+    public float DashSpeed = 7500;
+    public float DashCooldown = 2;
     [HideInInspector]
     public Vector3 MoveDirection;
 
