@@ -9,16 +9,12 @@ public class Enemy : MonoBehaviour, IDamageable
     [HideInInspector]
     public SpawnEnemies Spawner;
 
-
-
     // RIP
     public void Kill()
     {
         KillCounter.Instance.Add();
         Spawner.SpawnedEnemies.Remove(this);
         Destroy(gameObject);
-       
-
     }
 
     // Take damage.
@@ -39,5 +35,5 @@ public class Enemy : MonoBehaviour, IDamageable
             other.gameObject.GetComponent<IDamageable>()?.Damage(AttackDamage);
         }
     }
-   
+
 }

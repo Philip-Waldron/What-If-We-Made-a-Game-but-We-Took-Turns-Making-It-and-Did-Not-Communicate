@@ -45,8 +45,11 @@
       <Path>Library/PackageCache/com.unity.modules.xr@1.0.0</Path>
       <Path>Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.0</Path>
       <Path>Library/PackageCache/com.unity.services.core@1.0.1</Path>
+      <Path>Library/PackageCache/com.unity.sysroot.linux-x86_64@1.0.0</Path>
+      <Path>Library/PackageCache/com.unity.sysroot@1.0.0</Path>
       <Path>Library/PackageCache/com.unity.textmeshpro@3.0.6</Path>
       <Path>Library/PackageCache/com.unity.timeline@1.4.8</Path>
+      <Path>Library/PackageCache/com.unity.toolchain.win-x86_64-linux-x86_64@1.0.0</Path>
       <Path>Library/PackageCache/com.unity.ugui@1.0.0</Path>
       <Path>Packages</Path>
       <Path>ProjectSettings</Path>

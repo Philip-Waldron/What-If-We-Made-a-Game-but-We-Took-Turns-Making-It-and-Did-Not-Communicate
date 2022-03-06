@@ -21,12 +21,45 @@
           <e p="IDamageable.cs" t="Include" />
           <e p="NFTGenerator.cs" t="Include" />
           <e p="Player" t="Include">
+            <e p="KillCounter.cs" t="Include" />
             <e p="PlayerController.cs" t="Include" />
             <e p="PlayerHelth.cs" t="Include" />
             <e p="playerMovement.cs" t="Include" />
             <e p="playerShoot.cs" t="Include" />
+            <e p="PlayerTimerAlive.cs" t="Include" />
           </e>
           <e p="ThinkGun.cs" t="Include" />
+          <e p="Upgrades" t="Include">
+            <e p="HelthPackUpgrade.cs" t="Include" />
+            <e p="MinigunUpgrade.cs" t="Include" />
+            <e p="SpeedyBoiUpgrade.cs" t="Include" />
+            <e p="SpinnyBoi.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Sketchfab For Unity" t="Include">
+          <e p="Dependencies" t="Include">
+            <e p="Shaders" t="Include">
+              <e p="GLTFBumpToNormal.shader" t="Include" />
+              <e p="GLTFColorSpace.cginc" t="Include" />
+              <e p="GLTFFlipTexture.shader" t="Include" />
+              <e p="GLTFPackOccMetalRough.shader" t="Include" />
+            </e>
+          </e>
+          <e p="Scripts" t="Include">
+            <e p="AssetBrowser" t="Include">
+              <e p="SketchfabBrowserManager.cs" t="Include" />
+              <e p="SketchfabBrowserWindow.cs" t="Include" />
+              <e p="SketchfabModelWindow.cs" t="Include" />
+            </e>
+            <e p="Resizer.cs" t="Include" />
+            <e p="SketchfabApi.cs" t="Include" />
+            <e p="SketchfabExporter.cs" t="Include" />
+            <e p="SketchfabImporter.cs" t="Include" />
+            <e p="SketchfabImporterWindow.cs" t="Include" />
+            <e p="SketchfabLogger.cs" t="Include" />
+            <e p="SketchfabPlugin.cs" t="Include" />
+            <e p="SketchfabUI.cs" t="Include" />
+          </e>
         </e>
       </e>
       <e p="obj" t="ExcludeRecursive" />
