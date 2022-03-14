@@ -3,6 +3,6 @@
  
  Feel free to modify the readme with any dependancies or requirements to get your changes working.
 
- - Unity Version: 2020.3.23f1
+ - Unity Version: 2020.3.30f1
  - Required Packages:
    - Cinemachine 2.6.11
