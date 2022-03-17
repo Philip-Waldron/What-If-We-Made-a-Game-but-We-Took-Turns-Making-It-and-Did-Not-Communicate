@@ -20,12 +20,17 @@ public class SpawnEnemies : MonoBehaviour
     public float MaximumSpawnDistanceFromPlayer;
 
     public float SpawnRate;
+    public float SpawnRateIncrease;
+    public float SpawnRateIncreaseInterval;
+    public float MaximumSpawnRate;
     private float _spawnTimer;
+    private float _spawnIncreaseTimer;
     private bool _canSpawn = true;
 
     private void Update()
     {
         UpdateSpawnTimer();
+        UpdateSpawnIncrease();
 
         if (_canSpawn)
         {
@@ -90,6 +95,18 @@ public class SpawnEnemies : MonoBehaviour
                 _canSpawn = true;
                 _spawnTimer -= SpawnRate;
             }
+        }
+    }
+
+    private void UpdateSpawnIncrease()
+    {
+        _spawnIncreaseTimer += Time.deltaTime;
+
+        if (_spawnIncreaseTimer >= SpawnRateIncreaseInterval)
+        {
+            _spawnIncreaseTimer = 0;
+
+            SpawnRate = Mathf.Max((SpawnRate - SpawnRateIncrease), MaximumSpawnRate);
         }
     }
 
