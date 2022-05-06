@@ -21,7 +21,7 @@ public class KillCounter : MonoBehaviour
 
     private void Awake() => Instance = this;
 
-    private void Update() => killTex.text = $"{killerCount} | {ecomomicIMPACT} ETH";
+    private void Update() => killTex.text = $"{Math.Round(ecomomicIMPACT, 2)} ETH | {killerCount}";
     
     public void Add(Enemy enemy)
     {

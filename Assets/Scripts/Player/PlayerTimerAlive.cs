@@ -35,7 +35,7 @@ public class PlayerTimerAlive : MonoBehaviour
         if (updateTimer == true)
         {
             levelTimer += Time.deltaTime;
-            timerTex.text = levelTimer.ToString("f2");
+            timerTex.text = $"{levelTimer}s";
         }
 
     }
