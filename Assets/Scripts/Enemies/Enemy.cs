@@ -33,6 +33,7 @@ public class Enemy : MonoBehaviour, IDamageable
         Spawner.SpawnedEnemies.Remove(this);
         GameObject death = Instantiate(deflationEFFECT, null);
         death.transform.position = transform.position;
+        CameraShaker4000.Instance.ShakeCamera();
         Destroy(gameObject);
     }
 
