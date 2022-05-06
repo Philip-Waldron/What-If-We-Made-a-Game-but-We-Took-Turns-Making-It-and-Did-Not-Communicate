@@ -163,7 +163,9 @@ MonoBehaviour:
   _helthRange: {x: 2.5, y: 3.5}
   deflationOnDeath: 1
   deflationRadius: 1.35
-  deflationForce: 1
+  deflationForce: 0.1
+  deflationEFFECT: {fileID: 8453454779065489904, guid: ae407a076a2a54e549c0650efd9beb6b,
+    type: 3}
   Spawner: {fileID: 0}
 --- !u!114 &3728665228503768027
 MonoBehaviour:

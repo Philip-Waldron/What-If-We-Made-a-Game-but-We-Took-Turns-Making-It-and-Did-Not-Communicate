@@ -3495,12 +3495,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5ed97f05ad7cd24b83856385551cd0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spinnySpeed: 200
   sizeMultiplier: 1.4
   duration: 10
-  shootRateMultiplier: 1000
+  shootRateMultiplier: 300
   moveSpeedMultiier: 0.5
-  ProjectileSpeedMultiplier: 2
-  spinnySpeed: 200
+  projectileSpeedMultiplier: 2
   downTime: 60
 --- !u!1 &2929423792115002228
 GameObject:

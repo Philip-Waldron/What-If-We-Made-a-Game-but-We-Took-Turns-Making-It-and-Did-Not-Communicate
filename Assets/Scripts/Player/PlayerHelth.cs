@@ -31,7 +31,7 @@ public class PlayerHelth : MonoBehaviour, IDamageable
 
     // This damages the player.
     // Called from the Enemy class, when the enemy collides.
-    public void Damage(float damageTaken)
+    public void Damage(float damageTaken, bool cascade)
     {
         if (_invulnerable || _ded)
         {

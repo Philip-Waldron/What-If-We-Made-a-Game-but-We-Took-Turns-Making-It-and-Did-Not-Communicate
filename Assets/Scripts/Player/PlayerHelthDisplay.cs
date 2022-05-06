@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerHelthDisplay : MonoBehaviour
 {
-    public Text helthText;
+    public TextMeshProUGUI helthText;
     public Image helthImage;
 
     public Sprite feelinFine;

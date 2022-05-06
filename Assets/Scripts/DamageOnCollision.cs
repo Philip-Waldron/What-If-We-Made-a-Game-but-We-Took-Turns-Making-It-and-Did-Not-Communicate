@@ -34,7 +34,7 @@ public class DamageOnCollision : MonoBehaviour
             return;
         }
 
-        other.gameObject.GetComponent<IDamageable>()?.Damage(Damage);
+        other.gameObject.GetComponent<IDamageable>()?.Damage(Damage, false);
         _hasCollidedOnce = true;
     }
 }

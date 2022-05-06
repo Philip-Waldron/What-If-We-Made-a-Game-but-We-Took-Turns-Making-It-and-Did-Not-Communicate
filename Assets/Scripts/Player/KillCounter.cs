@@ -1,4 +1,5 @@
 using Player;
+using TMPro;
 using UnityEngine.UI;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ public class KillCounter : MonoBehaviour
     // Use this to get a reference to the player from anywhere (it's static).
     public static KillCounter Instance;
 
-    public Text killTex; //Text for GUI
+    public TextMeshProUGUI killTex; //Text for GUI
     public int killerCount = 0;
     public float ecomomicIMPACT = 0f;
     public bool updatekill = false;
@@ -27,13 +28,14 @@ public class KillCounter : MonoBehaviour
         updatekill = false;
     }
 
-    void Update() => killTex.text = $"{killerCount.ToString(("0"))} | {ecomomicIMPACT}.eth";
+    void Update() => killTex.text = $"{killerCount} | {ecomomicIMPACT}.eth";
     
     public void Add() => killerCount++;
 
-    public void TankEconomy(float damage, Vector3 location)
+    public void TankEconomy(float damage, Vector3 location, bool cascade)
     {
         ecomomicIMPACT += damage;
+        if (cascade) return;
         EcomincDamageFloaty floaterer = Instantiate(floaty.gameObject, null).GetComponent<EcomincDamageFloaty>();
         floaterer.CreateFlaoty(damage, location);
     }

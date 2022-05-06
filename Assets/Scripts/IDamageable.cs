@@ -4,5 +4,5 @@
 public interface IDamageable
 {
     void Kill();
-    void Damage(float damageTaken);
+    void Damage(float damageTaken, bool cascade);
 }

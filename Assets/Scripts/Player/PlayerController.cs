@@ -72,6 +72,11 @@ public class PlayerController : MonoBehaviour
             Body.rotation = Quaternion.RotateTowards(Body.rotation, Quaternion.LookRotation(MoveDirection.normalized * -1), Time.deltaTime * 1000);
         }
     }
+    
+    public void IncreaseMaxHelth()
+    {
+        MaxHelth += 1;
+    }
 
     public float GetMaxHelth()
     {

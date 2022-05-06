@@ -103,7 +103,7 @@ public class ThinkGun : MonoBehaviour
                 float forceDistance = forceHeading.magnitude;
                 Vector3 forceDirection = forceHeading / forceDistance;
                 hit.transform.gameObject.GetComponent<Rigidbody>().AddForce(forceDirection * PlayerController.Instance.ThinkGunKnockbackStrength, ForceMode.Impulse);
-                damageable.Damage(PlayerController.Instance.ThinkGunDamage);
+                damageable.Damage(PlayerController.Instance.ThinkGunDamage, false);
 
                 // lil knockback.
                 PlayerController.Instance.GetComponent<Rigidbody>().AddForce(-forceDirection * (PlayerController.Instance.ThinkGunPlayerKnockbackStrength), ForceMode.Impulse);

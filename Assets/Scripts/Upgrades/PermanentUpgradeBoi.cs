@@ -3,16 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PermanentUpgradeBoi : MonoBehaviour
+public abstract class PermanentUpgradeBoi : MonoBehaviour
 {
-    void OnTriggerEnter(Collider other)
+    protected PlayerController PlayerStats;
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            PlayerController stats = other.GetComponent<PlayerController>();
-            stats.ShootRate *= 0.85f;
-
-            Destroy(gameObject);
-        }
+        if (!other.CompareTag("Player")) return;
+        PlayerStats = other.GetComponent<PlayerController>();
+        GimmeUpgrade();
+        Destroy(gameObject);
     }
+
+    protected abstract void GimmeUpgrade();
 }

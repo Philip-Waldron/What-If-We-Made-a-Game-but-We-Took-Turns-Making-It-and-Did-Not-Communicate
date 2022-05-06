@@ -2,14 +2,13 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
-
-
+using TMPro;
 
 
 public class PlayerTimerAlive : MonoBehaviour
 {
 
-    public Text timerTex; //Text for GUI    
+    public TextMeshProUGUI timerTex; //Text for GUI    
     public float levelTimer = 0f;
     public bool updateTimer = false;
 
