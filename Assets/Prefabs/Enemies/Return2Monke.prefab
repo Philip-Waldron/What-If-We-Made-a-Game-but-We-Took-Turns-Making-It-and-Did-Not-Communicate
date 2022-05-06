@@ -162,6 +162,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackDamage: 2
   _helthRange: {x: 4.5, y: 7.25}
+  deflationOnDeath: 1
+  deflationRadius: 2.5
+  deflationForce: 5
   Spawner: {fileID: 0}
 --- !u!114 &2472002625216114825
 MonoBehaviour:

@@ -7,6 +7,9 @@ public class Enemy : MonoBehaviour, IDamageable
     public float AttackDamage = 1f;
     [SerializeField] private Vector2 _helthRange;
     private float _health, _initial;
+    public bool deflationOnDeath = true;
+    public float deflationRadius = 1f;
+    public float deflationForce = 1f;
 
     public float lastHitTime { get; private set; } = 0f;
 
@@ -30,6 +33,25 @@ public class Enemy : MonoBehaviour, IDamageable
         Destroy(gameObject);
     }
 
+    private void ImminentDeflation()
+    {
+        if (!deflationOnDeath) return;
+        
+        foreach (Collider hit in Physics.OverlapSphere(transform.position, deflationRadius))
+        {
+            IDamageable damageable = hit.transform.gameObject.GetComponent<IDamageable>();
+
+            if (damageable != null && !hit.transform.gameObject.CompareTag("Player"))
+            {
+                Vector3 forceHeading = hit.transform.position - transform.position;
+                float forceDistance = forceHeading.magnitude;
+                Vector3 forceDirection = forceHeading / forceDistance;
+                hit.transform.gameObject.GetComponent<Rigidbody>().AddForce(forceDirection * deflationForce, ForceMode.Impulse);
+                damageable.Damage(deflationForce);
+            }
+        }
+    }
+
     // Take damage.
     public void Damage(float damageTaken)
     {
@@ -38,6 +60,7 @@ public class Enemy : MonoBehaviour, IDamageable
         lastHitTime = Time.time;
         if (_health <= 0)
         {
+            ImminentDeflation();
             Kill();
         }
     }
@@ -51,4 +74,11 @@ public class Enemy : MonoBehaviour, IDamageable
         }
     }
 
+    private void OnDrawGizmos()
+    {
+        if (deflationOnDeath)
+        {
+            Gizmos.DrawWireSphere(transform.position, deflationRadius);
+        }
+    }
 }

@@ -27,7 +27,7 @@ public class KillCounter : MonoBehaviour
         updatekill = false;
     }
 
-    void Update() => killTex.text = $"{killerCount.ToString()} | {ecomomicIMPACT}.eth";
+    void Update() => killTex.text = $"{killerCount.ToString(("0"))} | {ecomomicIMPACT}.eth";
     
     public void Add() => killerCount++;
 
