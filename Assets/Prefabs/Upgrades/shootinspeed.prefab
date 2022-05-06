@@ -235,7 +235,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lightbulb
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4808275870573237202, guid: d40fff96bcab03249871bad6cff58977, type: 3}
+    - {fileID: 4808275870573237201, guid: d40fff96bcab03249871bad6cff58977, type: 3}
+    - {fileID: 4808275870573237207, guid: d40fff96bcab03249871bad6cff58977, type: 3}
+    - {fileID: 4808275870573237206, guid: d40fff96bcab03249871bad6cff58977, type: 3}
+    - {fileID: -4632631544155669955, guid: d40fff96bcab03249871bad6cff58977, type: 3}
+    - {fileID: 4808275870573237200, guid: d40fff96bcab03249871bad6cff58977, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d40fff96bcab03249871bad6cff58977, type: 3}
 --- !u!4 &3206278863660322779 stripped
 Transform:

@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerHelth : MonoBehaviour, IDamageable
 {
@@ -9,6 +10,8 @@ public class PlayerHelth : MonoBehaviour, IDamageable
 
     private bool _invulnerable;
     private bool _ded;
+
+    public UnityEvent dedHa;
 
     // Player is disable pls no missing references.
     private bool _forRealDed;
@@ -27,6 +30,7 @@ public class PlayerHelth : MonoBehaviour, IDamageable
     {
         AudioSource.PlayOneShot(DeathSound);
         _ded = true;
+        dedHa.Invoke();
     }
 
     // This damages the player.
@@ -39,13 +43,17 @@ public class PlayerHelth : MonoBehaviour, IDamageable
         }
 
         PlayerController.Instance.Helth -= damageTaken;
+        
+        
 
         if (PlayerController.Instance.Helth <= 0)
         {
+            KillCounter.Instance.theBlockchain.Add("NFT bubble will never ever burst it would seem???");
             Kill();
         }
         else
         {
+            KillCounter.Instance.PlayerTookDamage();
             AudioSource.PlayOneShot(HurtSounds[Random.Range (0, HurtSounds.Length)]);
             StartCoroutine(InvulnerableTimer());
         }

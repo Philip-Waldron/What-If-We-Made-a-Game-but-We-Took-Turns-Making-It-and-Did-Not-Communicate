@@ -4,9 +4,10 @@ using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
+    public string enemyName;
     public float AttackDamage = 1f;
     [SerializeField] private Vector2 _helthRange;
-    private float _health, _initial;
+    internal float _health, _initial;
     public bool deflationOnDeath = true;
     public float deflationRadius = 1f;
     public float deflationForce = 1f;
@@ -29,7 +30,7 @@ public class Enemy : MonoBehaviour, IDamageable
     // RIP
     public void Kill()
     {
-        KillCounter.Instance.Add();
+        KillCounter.Instance.Add(this);
         Spawner.SpawnedEnemies.Remove(this);
         GameObject death = Instantiate(deflationEFFECT, null);
         death.transform.position = transform.position;
@@ -61,7 +62,7 @@ public class Enemy : MonoBehaviour, IDamageable
     public void Damage(float damageTaken, bool cascade)
     {
         _health -= damageTaken;
-        KillCounter.Instance.TankEconomy(damageTaken, transform.position, cascade);
+        KillCounter.Instance.TankEconomy(this, damageTaken, transform.position, cascade);
         lastHitTime = Time.time;
         if (_health <= 0)
         {
