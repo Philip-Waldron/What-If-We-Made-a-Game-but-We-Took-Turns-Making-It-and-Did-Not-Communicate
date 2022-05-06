@@ -9,8 +9,11 @@ public class KillCounter : MonoBehaviour
     public static KillCounter Instance;
 
     public Text killTex; //Text for GUI
-    public float killerCount = 0f;
+    public int killerCount = 0;
+    public float ecomomicIMPACT = 0f;
     public bool updatekill = false;
+    
+    [SerializeField] private 
 
     void Start()
     {
@@ -23,18 +26,11 @@ public class KillCounter : MonoBehaviour
         updatekill = false;
     }
 
-    void Update()
-    {
-        if (updatekill == true)
-        {
-            killTex.text = killerCount.ToString("0");
-        }
+    void Update() => killTex.text = $"{killerCount} | {ecomomicIMPACT}.eth";
+    
+    public void Add() => killerCount++;
 
-    }
-    public void Add()
-    {
-       killerCount++;
-    }
+    public void TankEconomy(float damage) => ecomomicIMPACT += damage;
 
     void OnTriggerEnter2D(Collider2D col)
     {

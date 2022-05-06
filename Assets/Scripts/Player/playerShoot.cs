@@ -159,19 +159,19 @@ public class playerShoot : MonoBehaviour
     // We want to avoid using forward direction as that would mean the projectile would go farther when moving forwards, or not as far when moving backwards.
     private void AddMovementForceToProjectile(Rigidbody rigidbody)
     {
-        if (Input.GetKey(KeyCode.I) || Input.GetKey(KeyCode.UpArrow))
+        if (Up())
         {
             rigidbody.AddForce(new Vector3(PlayerController.Instance.MoveDirection.x * 5f, 0, 0), ForceMode.Impulse);
         }
-        else if (Input.GetKey(KeyCode.J) || Input.GetKey(KeyCode.LeftArrow))
+        else if (Left())
         {
             rigidbody.AddForce(new Vector3(0, 0, PlayerController.Instance.MoveDirection.z * 5f), ForceMode.Impulse);
         }
-        else if (Input.GetKey(KeyCode.L) || Input.GetKey(KeyCode.RightArrow))
+        else if (Right())
         {
             rigidbody.AddForce(new Vector3(0, 0, PlayerController.Instance.MoveDirection.z * 5f), ForceMode.Impulse);
         }
-        else if (Input.GetKey(KeyCode.K) || Input.GetKey(KeyCode.DownArrow))
+        else if (Down())
         {
             rigidbody.AddForce(new Vector3(PlayerController.Instance.MoveDirection.x * 5f, 0, 0), ForceMode.Impulse);
         }

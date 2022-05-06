@@ -1,13 +1,24 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
     public float AttackDamage = 1f;
-    [SerializeField]
-    private float _health = 3f;
+    [SerializeField] private Vector2 _helthRange;
+    private float _health, _initial;
 
     [HideInInspector]
     public SpawnEnemies Spawner;
+
+    public float RemainingValue() => _health / _initial;
+    public float CurrentValuation() => _health;
+
+    private void Awake()
+    {
+        _health = Random.Range(_helthRange.x, _helthRange.y);
+        _initial = _health;
+    }
 
     // RIP
     public void Kill()
@@ -21,6 +32,7 @@ public class Enemy : MonoBehaviour, IDamageable
     public void Damage(float damageTaken)
     {
         _health -= damageTaken;
+        KillCounter.Instance.TankEconomy(damageTaken);
         if (_health <= 0)
         {
             Kill();
