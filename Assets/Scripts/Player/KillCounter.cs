@@ -21,59 +21,53 @@ public class KillCounter : MonoBehaviour
 
     private void Awake() => Instance = this;
 
-    private void Update() => killTex.text = $"{killerCount} | {ecomomicIMPACT}.eth";
+    private void Update() => killTex.text = $"{killerCount} | {ecomomicIMPACT} ETH";
     
     public void Add(Enemy enemy)
     {
         killerCount++;
-        theBlockchain.Add(DeathHeadline(Random.Range(0, 3), enemy));
+        theBlockchain.Add(DeathHeadline(Random.Range(0, 4), enemy));
     }
 
-    public void PlayerTookDamage() => theBlockchain.Add(PlayerDamageHeadline(Random.Range(0, 7)));
+    public void PlayerTookDamage() => theBlockchain.Add(PlayerDamageHeadline(Random.Range(0, 3)));
+    public void PlayerDied() => theBlockchain.Add($"[{DateTime.Now}] NFT market itself was too strong, and in the end our valiant insider trading failed us.");
 
     private static string PlayerDamageHeadline(int i) =>
         i switch
         {
-            0 => $"Surge in NFT market!",
-            1 => $"Surge in NFT market!",
-            2 => $"Surge in NFT market!",
-            3 => $"Surge in NFT market!",
-            4 => $"Surge in NFT market!",
-            5 => $"Surge in NFT market!",
-            6 => $"Surge in NFT market!",
-            _ => $"Surge in NFT market!"
+            0 => $"[{DateTime.Now}] New NFT project backed by The Vatican, there has been a surge in demand and prices are sky high!",
+            1 => $"[{DateTime.Now}] New NFT project backed by Femboys International, there has been a surge in demand and prices are sky high!",
+            2 => $"[{DateTime.Now}] Despite trepidation, the volume of new NFTs being sold is higher than ever!",
+            _ => $"[{DateTime.Now}] New NFT project backed by The Vatican, there has been a surge in demand and prices are sky high!"
         };
 
     private static string DeathHeadline(int i, Enemy enemy) =>
         i switch
         {
-            0 => $"{enemy.enemyName}, worth {enemy._initial}.eth was hacked by the hacker Anonymous, {DateTime.Now}",
-            1 => $"{enemy.enemyName}, worth {enemy._initial}.eth was hacked by the hacker Anonymous, {DateTime.Now}",
-            2 => $"{enemy.enemyName}, worth {enemy._initial}.eth was hacked by the hacker Anonymous, {DateTime.Now}",
-            _ => $"{enemy.enemyName}, worth {enemy._initial}.eth was hacked by the hacker Anonymous, {DateTime.Now}"
+            0 => $"[{DateTime.Now}] {enemy.enemyName}, value plummets from {enemy._initial} ETH to 0 ETH",
+            1 => $"[{DateTime.Now}] Solar flare wipes local man's USB, wiping {enemy.enemyName}, valued at {enemy._initial} ETH",
+            2 => $"[{DateTime.Now}] Hacked. All my {enemy.enemyName} gone.",
+            3 => $"[{DateTime.Now}] Fraud? Local NFT project founder disappeared, along with {enemy.enemyName} worth {enemy._initial} ETH",
+            _ => $"[{DateTime.Now}] Fraud? Local NFT project founder disappeared, along with {enemy.enemyName} worth {enemy._initial} ETH"
         };
 
     public void TankEconomy(Enemy enemy, float damage, Vector3 location, bool cascade)
     {
         ecomomicIMPACT += damage;
-        theBlockchain.Add($"{enemy.enemyName} HAS BEEN HACKED");
         if (cascade) return;
         EcomincDamageFloaty floaterer = Instantiate(floaty.gameObject, null).GetComponent<EcomincDamageFloaty>();
         floaterer.CreateFlaoty(damage, location);
-        theBlockchain.Add(DamageHeadline(Random.Range(0, 7), damage, enemy));
+        theBlockchain.Add(DamageHeadline(Random.Range(0, 4), damage, enemy));
     }
     
     private static string DamageHeadline(int i, float damage, Enemy enemy) =>
         i switch
         {
-            0 => $"Local man loses {damage}.eth on {enemy.enemyName}",
-            1 => $"Local man loses {damage}.eth on {enemy.enemyName}",
-            2 => $"Local man loses {damage}.eth on {enemy.enemyName}",
-            3 => $"Local man loses {damage}.eth on {enemy.enemyName}",
-            4 => $"Local man loses {damage}.eth on {enemy.enemyName}",
-            5 => $"Local man loses {damage}.eth on {enemy.enemyName}",
-            6 => $"Local man loses {damage}.eth on {enemy.enemyName}",
-            _ => $"Local man loses {damage}.eth on {enemy.enemyName}"
+            0 => $"[{DateTime.Now}] Elon Musk tweets something stupid, {enemy.enemyName} loses {damage} ETH",
+            1 => $"[{DateTime.Now}] {enemy.enemyName}'s value drops from {enemy._initial} ETH to {enemy._health} ETH",
+            2 => $"[{DateTime.Now}] Inflation causing surge in devaluation as {enemy.enemyName} loses {damage} ETH",
+            3 => $"[{DateTime.Now}] {enemy.enemyName} was seemingly more fungible than first thought and drops {damage} ETH in value",
+            _ => $"[{DateTime.Now}] {enemy.enemyName} was seemingly more fungible than first thought and drops {damage} ETH in value"
         };
 
     public List<string> theBlockchain = new List<string>();

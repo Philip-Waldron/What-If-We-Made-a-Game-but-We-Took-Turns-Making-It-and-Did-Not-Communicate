@@ -19,12 +19,12 @@ public class Enemy : MonoBehaviour, IDamageable
     public SpawnEnemies Spawner;
 
     public float RemainingValue() => _health / _initial;
-    public float CurrentValuation() => _health;
 
     private void Awake()
     {
         _health = Random.Range(_helthRange.x, _helthRange.y);
         _initial = _health;
+        enemyName += $" #{Random.Range(10000, 99999)}";
     }
 
     // RIP

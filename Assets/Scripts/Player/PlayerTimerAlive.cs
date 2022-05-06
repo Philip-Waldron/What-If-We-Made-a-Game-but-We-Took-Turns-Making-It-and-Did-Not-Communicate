@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
@@ -12,9 +13,16 @@ public class PlayerTimerAlive : MonoBehaviour
     public float levelTimer = 0f;
     public bool updateTimer = false;
 
+    public static PlayerTimerAlive Instance;
+
     void start()
     {
         updateTimer = true;
+    }
+
+    private void Awake()
+    {
+        Instance = this;
     }
 
     void End()

@@ -65,6 +65,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf8e8d3a6f450a4da4f8f7f69bfba7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyName: Big Lady
   AttackDamage: 5
   _helthRange: {x: 15, y: 20.5}
   deflationOnDeath: 1

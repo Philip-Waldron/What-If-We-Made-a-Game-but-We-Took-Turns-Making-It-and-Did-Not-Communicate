@@ -48,7 +48,7 @@ public class PlayerHelth : MonoBehaviour, IDamageable
 
         if (PlayerController.Instance.Helth <= 0)
         {
-            KillCounter.Instance.theBlockchain.Add("NFT bubble will never ever burst it would seem???");
+            KillCounter.Instance.PlayerDied();
             Kill();
         }
         else
