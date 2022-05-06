@@ -31,6 +31,8 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         KillCounter.Instance.Add();
         Spawner.SpawnedEnemies.Remove(this);
+        GameObject death = Instantiate(deflationEFFECT, null);
+        death.transform.position = transform.position;
         Destroy(gameObject);
     }
 
@@ -52,9 +54,6 @@ public class Enemy : MonoBehaviour, IDamageable
                 }
             }
         }
-
-        GameObject death = Instantiate(deflationEFFECT, null);
-        death.transform.position = transform.position;
     }
 
     // Take damage.

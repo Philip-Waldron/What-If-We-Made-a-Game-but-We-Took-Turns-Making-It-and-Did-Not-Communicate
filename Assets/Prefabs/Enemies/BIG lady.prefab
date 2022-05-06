@@ -9,12 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5071390131022043275}
-  - component: {fileID: 8200749124785706798}
   - component: {fileID: 4560064072386083139}
   - component: {fileID: 667993694122409834}
   - component: {fileID: 1739556468511300526}
   - component: {fileID: 5560506111415403059}
-  - component: {fileID: 5560506111415403056}
+  - component: {fileID: 5411321916770314281}
   m_Layer: 0
   m_Name: BIG lady
   m_TagString: Enemy
@@ -38,14 +37,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &8200749124785706798
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5560506111415403057}
-  m_Mesh: {fileID: -2222346464153789849, guid: f6887cb9f8616fc4a9d3d69671dfb18c, type: 3}
 --- !u!54 &4560064072386083139
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -78,8 +69,8 @@ MonoBehaviour:
   _helthRange: {x: 9.5, y: 15.5}
   deflationOnDeath: 1
   deflationRadius: 7
-  deflationForce: 3
-  deflationEFFECT: {fileID: 8453454779065489904, guid: 0f7915cd6988649379d9bdd71e54b0e3,
+  deflationForce: 7
+  deflationEFFECT: {fileID: 8453454779065489904, guid: d5426cc3d355d49dfacf2f3c7cee616c,
     type: 3}
   Spawner: {fileID: 0}
 --- !u!114 &1739556468511300526
@@ -116,8 +107,8 @@ MonoBehaviour:
   RotationForce: 15
   MinMoveRate: 2
   MaxMoveRate: 4
---- !u!136 &5560506111415403056
-CapsuleCollider:
+--- !u!65 &5411321916770314281
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -126,10 +117,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.66
-  m_Height: 3.62
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.23, z: 0}
+  serializedVersion: 2
+  m_Size: {x: 0.6, y: 3.44, z: 0.43}
+  m_Center: {x: -0.18, y: 1.2, z: 0}
 --- !u!1001 &7577514038005151634
 PrefabInstance:
   m_ObjectHideFlags: 0
