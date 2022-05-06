@@ -49,25 +49,51 @@ public class playerShoot : MonoBehaviour
     // Keyboard keys for aiming the player.
     private void HandleInput()
     {
-        if (Input.GetKey(KeyCode.I) || Input.GetKey(KeyCode.UpArrow))
+        if (!Aiming()) return;
+        
+        // Take an average of each of the directions the user is aiming in
+        if (Up())
         {
-            Aim(Quaternion.Euler(0, 180, 0));
+            if (Left())
+            {
+                Aim(Quaternion.Euler(0f, 135f, 0f));
+            }
+            else if (Right())
+            {
+                Aim(Quaternion.Euler(0f, 225f, 0f));
+            }
+            Aim(Quaternion.Euler(0f, 180f, 0f));
         }
-        else if (Input.GetKey(KeyCode.J) || Input.GetKey(KeyCode.LeftArrow))
+        else if (Down())
         {
-            Aim(Quaternion.Euler(0, 90, 0));
+            if (Left())
+            {
+                Aim(Quaternion.Euler(0f, 45f, 0f));
+            }
+            else if (Right())
+            {
+                Aim(Quaternion.Euler(0f, 315f, 0f));
+            }
+            Aim(Quaternion.Euler(0f, 0f, 0f));
         }
-        else if (Input.GetKey(KeyCode.L) || Input.GetKey(KeyCode.RightArrow))
+        else if (Left())
         {
-            Aim(Quaternion.Euler(0, 270, 0));
+            Aim(Quaternion.Euler(0f, 90f, 0f));
         }
-        else if (Input.GetKey(KeyCode.K) || Input.GetKey(KeyCode.DownArrow))
+        else if (Right())
         {
-            Aim(Quaternion.Euler(0, 0, 0));
+            Aim(Quaternion.Euler(0f, 270f, 0f));
         }
     }
 
-    // Aim the player in the shooting direction.
+    private static bool Up() => Input.GetKey(KeyCode.I) || Input.GetKey(KeyCode.UpArrow);
+    private static bool Left() => Input.GetKey(KeyCode.J) || Input.GetKey(KeyCode.LeftArrow);
+    private static bool Right() => Input.GetKey(KeyCode.L) || Input.GetKey(KeyCode.RightArrow);
+    private static bool Down() => Input.GetKey(KeyCode.K) || Input.GetKey(KeyCode.DownArrow);
+
+    private static bool Aiming() => Up() || Left() || Right() || Down();
+
+// Aim the player in the shooting direction.
     // Use a coroutine to delay resetting the look direction for when the player stops aiming.
     private void Aim(Quaternion direction)
     {

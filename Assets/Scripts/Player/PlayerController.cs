@@ -36,6 +36,8 @@ public class PlayerController : MonoBehaviour
 
     // I'm too lazy to implement a proper Singleton, plz only have 1 PlayerController or you will create a paradox and kill us all (REALLY BAD).
     // Use this to get a reference to the player from anywhere (it's static).
+    
+    // I didn't realise this wasn't how you did a singleton lmao
     private void Awake()
     {
         MaxHelth = Helth;
