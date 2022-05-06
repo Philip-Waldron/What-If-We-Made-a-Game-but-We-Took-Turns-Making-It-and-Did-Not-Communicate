@@ -178,6 +178,7 @@ MonoBehaviour:
   _enemy: {fileID: -5535129998835166131}
   _sliderParent: {fileID: 3408826965082494700}
   _valueSlider: {fileID: 1617492555263612761}
+  lifetime: 1
 --- !u!1001 &5999578589553138869
 PrefabInstance:
   m_ObjectHideFlags: 0

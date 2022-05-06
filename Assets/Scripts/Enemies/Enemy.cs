@@ -8,6 +8,8 @@ public class Enemy : MonoBehaviour, IDamageable
     [SerializeField] private Vector2 _helthRange;
     private float _health, _initial;
 
+    public float lastHitTime { get; private set; } = 0f;
+
     [HideInInspector]
     public SpawnEnemies Spawner;
 
@@ -32,7 +34,8 @@ public class Enemy : MonoBehaviour, IDamageable
     public void Damage(float damageTaken)
     {
         _health -= damageTaken;
-        KillCounter.Instance.TankEconomy(damageTaken);
+        KillCounter.Instance.TankEconomy(damageTaken, transform.position);
+        lastHitTime = Time.time;
         if (_health <= 0)
         {
             Kill();

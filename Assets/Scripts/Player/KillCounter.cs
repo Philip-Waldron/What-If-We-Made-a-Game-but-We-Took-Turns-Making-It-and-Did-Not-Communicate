@@ -1,3 +1,4 @@
+using Player;
 using UnityEngine.UI;
 using UnityEngine;
 
@@ -12,8 +13,8 @@ public class KillCounter : MonoBehaviour
     public int killerCount = 0;
     public float ecomomicIMPACT = 0f;
     public bool updatekill = false;
-    
-    [SerializeField] private 
+
+    [SerializeField] private EcomincDamageFloaty floaty;
 
     void Start()
     {
@@ -26,11 +27,16 @@ public class KillCounter : MonoBehaviour
         updatekill = false;
     }
 
-    void Update() => killTex.text = $"{killerCount} | {ecomomicIMPACT}.eth";
+    void Update() => killTex.text = $"{killerCount.ToString()} | {ecomomicIMPACT}.eth";
     
     public void Add() => killerCount++;
 
-    public void TankEconomy(float damage) => ecomomicIMPACT += damage;
+    public void TankEconomy(float damage, Vector3 location)
+    {
+        ecomomicIMPACT += damage;
+        EcomincDamageFloaty floaterer = Instantiate(floaty.gameObject, null).GetComponent<EcomincDamageFloaty>();
+        floaterer.CreateFlaoty(damage, location);
+    }
 
     void OnTriggerEnter2D(Collider2D col)
     {

@@ -10,6 +10,7 @@ namespace Player
         [SerializeField] private Enemy _enemy;
         [SerializeField] private Transform _sliderParent;
         [SerializeField] private Slider _valueSlider;
+        [SerializeField] private float lifetime = .25f;
 
         private Camera _camera;
         float offset;
@@ -26,6 +27,10 @@ namespace Player
             _sliderParent.LookAt(_camera.transform);
             _sliderParent.position = Vector3.Lerp(_sliderParent.position, new Vector3(position.x, position.y + offset, position.z), .5f);
             _valueSlider.value = _enemy.RemainingValue();
+            
+            _sliderParent.gameObject.SetActive(show());
         }
+
+        private bool show() => Time.time - _enemy.lastHitTime < lifetime;
     }
 }
