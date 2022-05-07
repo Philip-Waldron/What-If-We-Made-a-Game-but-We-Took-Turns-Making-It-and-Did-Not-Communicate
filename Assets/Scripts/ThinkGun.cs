@@ -1,10 +1,12 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class ThinkGun : MonoBehaviour
 {
     public SpawnEnemies Spawner;
+    public TMP_Text ThinkGunText;
 
     public AudioSource AudioSource;
     public float ShootSoundPlayTime = 3;
@@ -38,6 +40,7 @@ public class ThinkGun : MonoBehaviour
         {
             _canShoot = true;
             _rechargingShot = false;
+            ThinkGunText.text = "[space]";
             _shootTimer = 0;;
         }
     }
@@ -162,6 +165,7 @@ public class ThinkGun : MonoBehaviour
         transform.localScale = new Vector3(0, 0, 0);
         _shotInProgress = false;
         _rechargingShot = true;
+        ThinkGunText.text = "i recharge...";
 
         yield return null;
     }
