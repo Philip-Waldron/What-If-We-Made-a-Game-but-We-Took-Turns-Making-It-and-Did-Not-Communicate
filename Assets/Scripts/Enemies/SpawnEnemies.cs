@@ -120,6 +120,7 @@ public class SpawnEnemies : MonoBehaviour
     }
 
     // Yummy gizmos to show spawn area.
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         UnityEditor.Handles.color = Color.yellow;
@@ -131,4 +132,5 @@ public class SpawnEnemies : MonoBehaviour
             UnityEditor.Handles.DrawWireDisc(GameObject.FindWithTag("Player").transform.position, Vector3.up, MaximumSpawnDistanceFromPlayer);
         }
     }
+#endif
 }
