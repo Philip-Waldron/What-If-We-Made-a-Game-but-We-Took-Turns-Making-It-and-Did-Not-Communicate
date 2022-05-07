@@ -13,9 +13,10 @@ namespace Player
         [SerializeField] private LedgerLine _ledgerLine;
         [SerializeField] private TextMeshProUGUI results;
         [SerializeField] private float lodgerDuration = .25f;
+        [SerializeField] private AudioSource _dedMusic;
 
         private bool ded;
-        
+
         private void Start() => _helth.dedHa.AddListener(DeadTime);
 
         private string[] _stringchain;
@@ -31,6 +32,7 @@ namespace Player
             _stringchain = KillCounter.Instance.theBlockchain.ToArray();
             results.SetText($"Despite your best efforts, NFTs have prevailed. You managed to hack {KillCounter.Instance.killerCount} NFTS and destroy multiple marriages, with overall {KillCounter.Instance.ecomomicIMPACT} ETH destroyed, all this in only {PlayerTimerAlive.Instance.levelTimer} seconds, well done!");
             StartCoroutine(LodgeLedger());
+            _dedMusic.Play();
         }
 
         private IEnumerator LodgeLedger()
