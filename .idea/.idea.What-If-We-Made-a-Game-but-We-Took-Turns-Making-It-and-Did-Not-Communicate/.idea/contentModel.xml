@@ -21,6 +21,7 @@
             <e p="SpawnEnemies.cs" t="Include" />
           </e>
           <e p="IDamageable.cs" t="Include" />
+          <e p="MuteMusic.cs" t="Include" />
           <e p="NFTGenerator.cs" t="Include" />
           <e p="PermanentUpgradeSpawner.cs" t="Include" />
           <e p="Player" t="Include">
@@ -36,6 +37,7 @@
             <e p="playerShoot.cs" t="Include" />
             <e p="PlayerTimerAlive.cs" t="Include" />
           </e>
+          <e p="Resetting.cs" t="Include" />
           <e p="ThinkGun.cs" t="Include" />
           <e p="Upgrades" t="Include">
             <e p="betterSHoes.cs" t="Include" />
