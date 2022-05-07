@@ -14,6 +14,9 @@ namespace Player
         [SerializeField] private TextMeshProUGUI results;
         [SerializeField] private float lodgerDuration = .25f;
         [SerializeField] private AudioSource _dedMusic;
+        [SerializeField] private AudioSource _aliveMusic;
+        [SerializeField] private float _fadeTime;
+        [SerializeField] private ThinkGun _thinkGun;
 
         private bool ded;
 
@@ -33,6 +36,8 @@ namespace Player
             results.SetText($"Despite your best efforts, NFTs have prevailed. You managed to hack {KillCounter.Instance.killerCount} NFTS and destroy multiple marriages, with overall {KillCounter.Instance.ecomomicIMPACT} ETH destroyed, all this in only {PlayerTimerAlive.Instance.levelTimer} seconds, well done!");
             StartCoroutine(LodgeLedger());
             _dedMusic.Play();
+            StartCoroutine(FadeMusic(_fadeTime));
+            _thinkGun.StopMeIfYouDare = true;
         }
 
         private IEnumerator LodgeLedger()
@@ -44,6 +49,22 @@ namespace Player
                 newLedger.ledger.SetText(block);
                 yield return new WaitForSeconds(lodgerDuration);
             }
+        }
+
+        private IEnumerator FadeMusic(float fadeTime)
+        {
+            float elapsedTime = 0;
+            float startVolume = _aliveMusic.volume;
+            while (elapsedTime < fadeTime)
+            {
+                print(Mathf.Lerp(startVolume, 0, elapsedTime / fadeTime));
+                _aliveMusic.volume = Mathf.Lerp(startVolume, 0, elapsedTime / fadeTime);
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+
+            _aliveMusic.volume = 0;
+            _aliveMusic.Stop();
         }
     }
 }

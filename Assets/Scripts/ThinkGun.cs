@@ -7,6 +7,8 @@ public class ThinkGun : MonoBehaviour
 {
     public SpawnEnemies Spawner;
     public TMP_Text ThinkGunText;
+    public AudioSource Music;
+    public bool StopMeIfYouDare;
 
     public AudioSource AudioSource;
     public float ShootSoundPlayTime = 3;
@@ -18,6 +20,11 @@ public class ThinkGun : MonoBehaviour
 
     private void Update()
     {
+        if (StopMeIfYouDare)
+        {
+            return;
+        }
+
         if (_rechargingShot)
         {
             UpdateRechargeTimer();
@@ -121,6 +128,7 @@ public class ThinkGun : MonoBehaviour
         _canShoot = false;
 
         PlayAudio(PlayerController.Instance.ThinkGunArmTime + PlayerController.Instance.ThinkGunChargeTime + ShootSoundPlayTime + (PlayerController.Instance.ThinkGunArmTime / 2));
+        StartCoroutine(FadeMusic(1f, 0.01f));
 
         float elapsedTime = 0;
         transform.localScale = new Vector3(0, 0, 0);
@@ -167,6 +175,23 @@ public class ThinkGun : MonoBehaviour
         _rechargingShot = true;
         ThinkGunText.text = "i recharge...";
 
+        StartCoroutine(FadeMusic(1f, 0.025f));
+
         yield return null;
+    }
+
+    private IEnumerator FadeMusic(float fadeTime, float targetVolume)
+    {
+        float elapsedTime = 0;
+        float startVolume = Music.volume;
+        while (elapsedTime < fadeTime)
+        {
+            print(Mathf.Lerp(startVolume, targetVolume, elapsedTime / fadeTime));
+            Music.volume = Mathf.Lerp(startVolume, targetVolume, elapsedTime / fadeTime);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        Music.volume = targetVolume;
     }
 }
